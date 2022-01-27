@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Bullet bulletPrefab;
     public float thrustSpeed = 1.0f;
     public float turnSpeed = 1.0f;
 
@@ -16,13 +17,7 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         _thursting = Input.GetKey(KeyCode.UpArrow);
@@ -33,6 +28,10 @@ public class Player : MonoBehaviour
             _turnDirection = -1.0f;
         } else {
             _turnDirection = 0.0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.L)) {
+            Shoot();
         }
     }
 
@@ -45,5 +44,11 @@ public class Player : MonoBehaviour
         if (_turnDirection != 0.0f) {
             _rigidbody.AddTorque(_turnDirection * this.turnSpeed);
         }
+    }
+
+    private void Shoot()
+    {
+        Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
+        bullet.Project(this.transform.up);
     }
 }
