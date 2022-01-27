@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float thrustSpeed = 1.0f;
+    public float turnSpeed = 1.0f;
+
     private Rigidbody2D _rigidbody;
     private bool _thursting;
     private float _turnDirection;
@@ -38,6 +40,10 @@ public class Player : MonoBehaviour
     {
         if (_thursting) {
             _rigidbody.AddForce(this.transform.up * this.thrustSpeed);
+        }
+
+        if (_turnDirection != 0.0f) {
+            _rigidbody.AddTorque(_turnDirection * this.turnSpeed);
         }
     }
 }
