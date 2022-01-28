@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 327203573789211270}
   - component: {fileID: 3922481937005329408}
   - component: {fileID: -518942696918170069}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Asteroid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6665390153729723434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.02427975, y: 0.02427975, z: 0.161865}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.64, y: 10.65}
+  m_Size: {x: 2.16, y: 2.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,14 +123,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.64, y: 10.65}
-    newSize: {x: 10.64, y: 10.65}
+    oldSize: {x: 2.16, y: 2.16}
+    newSize: {x: 2.16, y: 2.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.75, y: 7.75}
+  m_Size: {x: 2.16, y: 2.16}
   m_EdgeRadius: 0
 --- !u!114 &-518942696918170069
 MonoBehaviour:
@@ -144,3 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370fed4df9e6d05459873aa213f24591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: f5ea23f76ceee604a9fe03435686a5e1, type: 3}
+  - {fileID: 21300000, guid: c359d3a83291ad14b8324fff470390f7, type: 3}
+  - {fileID: 21300000, guid: 1feeb6c64ba4bc247ad53974ae5fa889, type: 3}
+  - {fileID: 21300000, guid: ccff5dbfc0c8bf546950c6a0caccadff, type: 3}
+  size: 1
+  minSize: 0.5
+  maxSize: 1.5
+  speed: 20
+  maxLifeTime: 30
