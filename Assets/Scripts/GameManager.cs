@@ -52,12 +52,14 @@ public class GameManager : MonoBehaviour
         this.player.transform.position = Vector3.zero;
         this.player.gameObject.layer = LayerMask.NameToLayer("IgnoreCollisions");
         this.player.gameObject.SetActive(true);
+        this.player.GetComponent<SpriteRenderer>().color = Color.yellow;
         
         Invoke(nameof(TurnOnCollisions), this.invincibleTime);
     }
 
     private void TurnOnCollisions()
     {
+        this.player.GetComponent<SpriteRenderer>().color = Color.white;
         this.player.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
