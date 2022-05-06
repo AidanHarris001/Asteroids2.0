@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     {
         Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
         bullet.Project(this.transform.up);
+        FindObjectOfType<GameManager>().PlayerShot();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

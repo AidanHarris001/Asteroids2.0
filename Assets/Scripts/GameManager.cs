@@ -8,17 +8,29 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public float invincibleTime = 3.0f;
     public int score = 0;
+    public int bulletsShot = 0;
+    public int asteroidsDestroyed = 0;
+    public int livesLost = 0;
+    public int highScore = 0;
 
     void Start()
     {
         FindObjectOfType<Lives>().newLive(this);
         FindObjectOfType<Score>().newScore(this);
+
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        bulletsShot = data.bulletsShot;
+        asteroidsDestroyed = data.asteroidsDestroyed;
+        livesLost = data.livesLost;
+        highScore = data.highScore;
     }
 
     public void AsteroidDestroyed(Asteroid asteroid)
     {
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
+        this.asteroidsDestroyed += 1;
 
         if (asteroid.size < 0.75f) {
             this.score += 100;
@@ -38,6 +50,7 @@ public class GameManager : MonoBehaviour
         this.explosion.Play();
 
         this.lives--;
+        this.livesLost++;
 
         if (this.lives <= 0) {
             GameOver();
@@ -45,6 +58,11 @@ public class GameManager : MonoBehaviour
             Invoke(nameof(Respawn), this.respawnTime);
             FindObjectOfType<Lives>().newLive(this);
         }
+    }
+
+    public void PlayerShot()
+    {
+        this.bulletsShot += 1;
     }
 
     private void Respawn()
@@ -55,6 +73,7 @@ public class GameManager : MonoBehaviour
         this.player.GetComponent<SpriteRenderer>().color = Color.yellow;
         
         Invoke(nameof(TurnOnCollisions), this.invincibleTime);
+
     }
 
     private void TurnOnCollisions()
@@ -65,6 +84,13 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (score > data.highScore) {
+            highScore = score;
+        }
+
+        SaveSystem.SavePlayer(this);
         this.lives = 3;
         this.score = 0;
         FindObjectOfType<Lives>().newLive(this);
