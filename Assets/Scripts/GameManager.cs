@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     public float invincibleTime = 3.0f;
     public int score = 0;
 
+    void Start()
+    {
+        FindObjectOfType<Lives>().newLive(this);
+        FindObjectOfType<Score>().newScore(this);
+    }
+
     public void AsteroidDestroyed(Asteroid asteroid)
     {
         this.explosion.transform.position = asteroid.transform.position;
@@ -16,10 +22,13 @@ public class GameManager : MonoBehaviour
 
         if (asteroid.size < 0.75f) {
             this.score += 100;
+            FindObjectOfType<Score>().newScore(this);
         } else if (asteroid.size < 1.25f) {
             this.score += 50;
+            FindObjectOfType<Score>().newScore(this);
         } else {
             this.score += 25;
+            FindObjectOfType<Score>().newScore(this);
         }
     }
     
@@ -34,6 +43,7 @@ public class GameManager : MonoBehaviour
             GameOver();
         } else {
             Invoke(nameof(Respawn), this.respawnTime);
+            FindObjectOfType<Lives>().newLive(this);
         }
     }
 
@@ -55,6 +65,8 @@ public class GameManager : MonoBehaviour
     {
         this.lives = 3;
         this.score = 0;
+        FindObjectOfType<Lives>().newLive(this);
+        FindObjectOfType<Score>().newScore(this);
 
         Invoke(nameof(Respawn), this.respawnTime);
     }
