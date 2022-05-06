@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
             _turnDirection = 0.0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.L)) {
+        if (Input.GetKeyDown(KeyCode.Return)) {
             Shoot();
         }
     }
